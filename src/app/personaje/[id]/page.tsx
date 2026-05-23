@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { FaArrowLeft, FaTv, FaGlobe, FaDna, FaHeartbeat } from 'react-icons/fa';
 import { Character } from '../../types'; // Reutilizamos tu types.ts para mantener limpio el archivo
 
-// Configuramos la revalidación estática incremental (ISR) a 10 días
 export const revalidate = 864000; 
 
 async function getCharacterData(id: string): Promise<Character> {
