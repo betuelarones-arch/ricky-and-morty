@@ -46,7 +46,7 @@ export default async function CharacterDetailPage({ params }: { params: { id: st
                         src={character.image}
                         alt={character.name}
                         fill
-                        priority 
+                        priority
                         className="object-cover"
                     />
                 </div>
@@ -95,4 +95,19 @@ export default async function CharacterDetailPage({ params }: { params: { id: st
             </div>
         </main>
     );
+}
+
+export async function generateStaticParams() {
+    try {
+        const res = await fetch('https://rickandmortyapi.com/api/character');
+        if (!res.ok) return [];
+
+        const data = await res.json();
+        return data.results.map((char: any) => ({
+            id: char.id.toString(),
+        }));
+    } catch (error) {
+        console.error("Error generando rutas estáticas en la build", error);
+        return [];
+    }
 }
